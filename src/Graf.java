@@ -51,6 +51,10 @@ public class Graf<T> {
         --E;
     }
 
+    public Set<Node> getNodes() {
+        return adjacencyMap.keySet();
+    }
+
     public ArrayList<T> getNodesAdjacents(Node node) {
         return adjacencyMap.get(node);
     }
