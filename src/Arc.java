@@ -1,6 +1,4 @@
-/**
- * Created by ricard on 4/3/15.
- */
+
 public class Arc {
     private double pes;
     private Node node;

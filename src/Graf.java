@@ -33,7 +33,6 @@ public abstract class Graf<T> {
     }
 
     public void eliminarNode(Node node) {
-        //Falta acabar d'implementar l'operació
         for(Node b : adjacencyMap.keySet()){
             ArrayList<T> bAdjacents = adjacencyMap.get(b);
             if(bAdjacents.contains(node)) {
@@ -44,7 +43,6 @@ public abstract class Graf<T> {
         ArrayList<T> nodeAdjacents = adjacencyMap.get(node);
         E -= nodeAdjacents.size();
         adjacencyMap.remove(node);
-
         --V;
     }
 
