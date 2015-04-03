@@ -1,6 +1,6 @@
 import java.util.*;
 
-public abstract class Graf<T> {
+public class Graf<T> {
 
     private Map<Node, ArrayList<T>> adjacencyMap;
     private int V, E;

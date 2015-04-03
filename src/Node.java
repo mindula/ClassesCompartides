@@ -1,5 +1,5 @@
 
-public abstract class Node<T> {
+public class Node<T> {
     private T id;
 
     public Node(T id) {
