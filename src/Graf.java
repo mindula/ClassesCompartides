@@ -52,7 +52,7 @@ public abstract class Graf<T> {
         return adjacencyList.get(node).size();
     }
 
-    public boolean trobarNode(Node node) {
+    public boolean existeixNode(Node node) {
         return adjacencyList.containsKey(node);
     }
 
