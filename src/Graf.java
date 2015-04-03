@@ -39,6 +39,7 @@ public abstract class Graf<T> {
             ArrayList<T> adjacents = adjacencyList.get(n);
             if(adjacents.contains(node)){
                 adjacents.remove(node);
+                --E;
             }
         }
         adjacencyList.remove(node);
