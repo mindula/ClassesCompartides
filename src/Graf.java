@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Graf<T> {
 
-    private Map<Node<T>, ArrayList<T>> adjacencyMap;
+    private Map<Node, ArrayList<T>> adjacencyMap;
     private int V, E;
 
     public Graf() {
-        adjacencyMap = new HashMap<Node<T>, ArrayList<T>>();
+        adjacencyMap = new HashMap<Node, ArrayList<T>>();
         V = E = 0;
     }
 
@@ -18,12 +18,12 @@ public class Graf<T> {
         return V;
     }
 
-    public void afegirNode(Node<T> node) {
+    public void afegirNode(Node node) {
         adjacencyMap.put(node, new ArrayList<T>());
         ++V;
     }
 
-    public void afegirArc(Node<T> origen, T desti) {
+    public void afegirArc(Node origen, T desti) {
         if (adjacencyMap.containsKey(origen)) {
             adjacencyMap.get(origen).add(desti);
             ++E;
@@ -52,7 +52,7 @@ public class Graf<T> {
         --E;
     }
 
-    public Set<Node<T>> getNodes() {
+    public Set<Node> getNodes() {
         return adjacencyMap.keySet();
     }
 
