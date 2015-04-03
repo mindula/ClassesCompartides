@@ -2,11 +2,11 @@ import java.util.*;
 
 public abstract class Graf<T> {
 
-    private Map<Node, ArrayList<T>> adjacencyMap;
+    private Map<Node<T>, ArrayList<T>> adjacencyMap;
     private int V, E;
 
     public Graf() {
-        adjacencyMap = new HashMap<Node, ArrayList<T>>();
+        adjacencyMap = new HashMap<Node<T>, ArrayList<T>>();
         V = E = 0;
     }
 
@@ -18,12 +18,12 @@ public abstract class Graf<T> {
         return V;
     }
 
-    public void afegirNode(Node node) {
+    public void afegirNode(Node<T> node) {
         adjacencyMap.put(node, new ArrayList<T>());
         ++V;
     }
 
-    public void afegirArc(Node origen, T desti) {
+    public void afegirArc(Node<T> origen, T desti) {
         if (adjacencyMap.containsKey(origen)) {
             adjacencyMap.get(origen).add(desti);
             ++E;
@@ -32,12 +32,12 @@ public abstract class Graf<T> {
         }
     }
 
-    public void eliminarNode(Node node) {
+    public void eliminarNode(Node<T> node) {
         //Falta acabar d'implementar l'operació
-        for(Node b : adjacencyMap.keySet()){
+        for(Node<T> b : adjacencyMap.keySet()){
             ArrayList<T> bAdjacents = adjacencyMap.get(b);
-            if(bAdjacents.contains(node)) {
-                bAdjacents.remove(node);
+            if(bAdjacents.contains(node.getDades())) {
+                bAdjacents.remove(node.getDades());
                 --E;
             }
         }
