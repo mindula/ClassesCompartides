@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public abstract class Graf<T> {
@@ -34,7 +35,13 @@ public abstract class Graf<T> {
 
     public void eliminarNode(Node node) {
         //Falta acabar d'implementar l'operació
-
+        for(Node n : adjacencyList.keySet()){
+            ArrayList<T> adjacents = adjacencyList.get(n);
+            if(adjacents.contains(node)){
+                adjacents.remove(node);
+            }
+        }
+        adjacencyList.remove(node);
 
         --V;
     }
