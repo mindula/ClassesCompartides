@@ -1,6 +1,6 @@
 import java.util.*;
 
-public abstract class Graf<T> {
+public class Graf<T> {
 
     private Map<Node<T>, ArrayList<T>> adjacencyMap;
     private int V, E;
@@ -32,9 +32,9 @@ public abstract class Graf<T> {
         }
     }
 
-    public void eliminarNode(Node<T> node) {
-        //Falta acabar d'implementar l'operació
-        for(Node<T> b : adjacencyMap.keySet()){
+
+    public void eliminarNode(Node node) {
+        for(Node b : adjacencyMap.keySet()){
             ArrayList<T> bAdjacents = adjacencyMap.get(b);
             if(bAdjacents.contains(node.getDades())) {
                 bAdjacents.remove(node.getDades());
@@ -44,13 +44,16 @@ public abstract class Graf<T> {
         ArrayList<T> nodeAdjacents = adjacencyMap.get(node);
         E -= nodeAdjacents.size();
         adjacencyMap.remove(node);
-
         --V;
     }
 
     public void eliminarArc(Node origen, T desti) {
         adjacencyMap.get(origen).remove(desti);
         --E;
+    }
+
+    public Set<Node<T>> getNodes() {
+        return adjacencyMap.keySet();
     }
 
     public ArrayList<T> getNodesAdjacents(Node node) {
