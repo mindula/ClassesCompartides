@@ -33,7 +33,7 @@ public class Graf<T> {
     }
 
 
-    public void eliminarNode(Node<T> node) {
+    public void eliminarNode(Node node) {
         for(Node b : adjacencyMap.keySet()){
             ArrayList<T> bAdjacents = adjacencyMap.get(b);
             if(bAdjacents.contains(node.getDades())) {
