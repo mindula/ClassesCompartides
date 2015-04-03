@@ -18,12 +18,16 @@ public class DriverGraf {
         G.afegirNode(n3);
 
         G.afegirArc(n, new Arc(1, n1));
-
-        G.afegirArc(n1, new Arc(1,n2));
-        G.afegirArc(n1, new Arc(1,n3));
+        G.afegirArc(n1, new Arc(1, n2));
+        G.afegirArc(n1, new Arc(1, n3));
         G.afegirArc(n, new Arc(1,n2));
         G.afegirArc(n2, new Arc(1,n3));
 
+        System.out.print("mida(arcs): " + G.mida() + " deberia ser: 5");
+        System.out.print("ordre(arcs): " + G.ordre() + " deberia ser: 4");
+        System.out.print("Treiem node n2");
+        System.out.print("mida(arcs): " + G.mida() + " deberia ser: 2");
+        System.out.print("ordre(arcs): "+G.ordre()+" deberia ser: 3");
 
         System.out.println(G);
         System.out.println(G.getNodesAdjacents(n3));
