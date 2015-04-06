@@ -48,18 +48,16 @@ public class Graf<T> {
      * @param desti
      */
     public void afegirArc(T origen, T desti) {
-       afegirArc(origen, desti, 0);
+        afegirArc(origen, desti, 0);
     }
 
     public void afegirArc(T origen, T desti, double pes) {
         if (!adjacencyMap.containsKey(origen))
             throw new  RuntimeException("El node origen ha d'estar previament al graf");
-
         if (!adjacencyMap.containsKey(desti))
             throw new  RuntimeException("El node desti ha d'estar previament al graf");
-
-            adjacencyMap.get(origen).add(new Arc<T>(pes, desti));
-            ++E;
+        adjacencyMap.get(origen).add(new Arc<T>(pes, desti));
+        ++E;
     }
 
 
@@ -75,10 +73,7 @@ public class Graf<T> {
                 if (a.getNodeDesti() == node) {
                     bAdjacents.remove(a);
                     --E;
-                }
-                else{
-                    i++;
-                }
+                } else i++;
             }
         }
 
@@ -93,7 +88,7 @@ public class Graf<T> {
      * @param origen
      * @param desti
      */
-    public void eliminarArc(T origen, T desti) {
+    public void eliminarArcs(T origen, T desti) {
         ArrayList<Arc<T>> bAdjacents = adjacencyMap.get(origen);
         boolean trobat = false;
         int i = 0;
@@ -103,12 +98,10 @@ public class Graf<T> {
                 bAdjacents.remove(a);
                 --E;
                 trobat = true;
-            }
+            } ++i;
         }
-
-        if(!trobat){
-            throw new RuntimeException("El arc no existeix");
-        }
+        if(!trobat)
+            throw new RuntimeException("L'arc no existeix");
     }
 
     public Set<T> getNodes() {
@@ -125,6 +118,22 @@ public class Graf<T> {
 
     public boolean existeixNode(T node) {
         return adjacencyMap.containsKey(node);
+    }
+
+    public boolean existeixArc(T origen, T desti) {
+        if (!adjacencyMap.containsKey(origen))
+            throw new  RuntimeException("El node origen ha d'estar previament al graf");
+        if (!adjacencyMap.containsKey(desti))
+            throw new  RuntimeException("El node desti ha d'estar previament al graf");
+        ArrayList<Arc<T>> bAdjacents = adjacencyMap.get(origen);
+        int i = 0;
+        while (i < bAdjacents.size()) {
+            Arc<T> a = bAdjacents.get(i);
+            if (a.getNodeDesti() == desti) {
+                return true;
+            } ++i;
+        }
+        return false;
     }
 
     @Override
