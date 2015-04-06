@@ -5,19 +5,35 @@ public class Graf<T> {
     private Map<T, ArrayList<Arc<T>>> adjacencyMap;
     private int V, E;
 
+    /**
+     * Crea un graf buit
+     */
     public Graf() {
         adjacencyMap = new HashMap<T, ArrayList<Arc<T>>>();
         V = E = 0;
     }
 
+    /**
+     *
+     * @return nombre d'arcs del graf
+     */
     public int mida() {
         return E;
     }
 
+    /**
+     *
+     * @return nombre de nodes del graf
+     */
     public int ordre() {
         return V;
     }
 
+    /**
+     *
+     * @param node a afegir.
+     * @throws RuntimeException si el node ja es al graf previament
+     */
     public void afegirNode(T node) {
         if(adjacencyMap.containsKey(node))
             throw new RuntimeException("No es pot inserir el mateix node multiples vegades al mateix graf");
@@ -26,6 +42,11 @@ public class Graf<T> {
         ++V;
     }
 
+    /**
+     *
+     * @param origen
+     * @param desti
+     */
     public void afegirArc(T origen, T desti) {
        afegirArc(origen, desti, 0);
     }
@@ -34,7 +55,7 @@ public class Graf<T> {
         if (!adjacencyMap.containsKey(origen))
             throw new  RuntimeException("El node origen ha d'estar previament al graf");
 
-        if (!adjacencyMap.containsKey(origen))
+        if (!adjacencyMap.containsKey(desti))
             throw new  RuntimeException("El node desti ha d'estar previament al graf");
 
             adjacencyMap.get(origen).add(new Arc<T>(pes, desti));
@@ -67,11 +88,16 @@ public class Graf<T> {
         --V;
     }
 
+    /**
+     *
+     * @param origen
+     * @param desti
+     */
     public void eliminarArc(T origen, T desti) {
         ArrayList<Arc<T>> bAdjacents = adjacencyMap.get(origen);
         boolean trobat = false;
         int i = 0;
-        while(i < bAdjacents.size() && !trobat) {
+        while(i < bAdjacents.size()) {
             Arc<T> a = bAdjacents.get(i);
             if (a.getNodeDesti() == desti) {
                 bAdjacents.remove(a);
