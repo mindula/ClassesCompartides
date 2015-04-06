@@ -1,11 +1,16 @@
 
-public class Arc {
+public class Arc<T> {
     private double pes;
-    private Node node;
+    private T nodeDesti;
+    
+    public Arc(T nodeDesti) {
+        this.pes = 0;
+        this.nodeDesti = nodeDesti;
+    }
 
-    public Arc(double pes, Node node) {
+    public Arc(double pes, T nodeDesti) {
         this.pes = pes;
-        this.node = node;
+        this.nodeDesti = nodeDesti;
     }
 
     public double getPes() {
@@ -16,11 +21,16 @@ public class Arc {
         this.pes = pes;
     }
 
-    public Node getNode() {
-        return node;
+    public T getNodeDesti() {
+        return nodeDesti;
     }
 
-    public void setNode(Node node) {
-        this.node = node;
+    public void setNodeDesti(T nodeDesti) {
+        this.nodeDesti = nodeDesti;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + nodeDesti + "," + pes + "}";
     }
 }

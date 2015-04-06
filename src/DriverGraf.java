@@ -1,7 +1,7 @@
 
 public class DriverGraf {
     public void main() {
-        GrafProva G = new GrafProva();
+        Graf<NodeLouvain> G = new Graf<NodeLouvain>();
         String s = "Ricard";
         String s1 = "Peter";
         String s2 = "Juliana";
@@ -17,21 +17,22 @@ public class DriverGraf {
         G.afegirNode(n2);
         G.afegirNode(n3);
 
-        G.afegirArc(n, new Arc(1, n1));
-        G.afegirArc(n1, new Arc(1, n2));
-        G.afegirArc(n1, new Arc(1, n3));
-        G.afegirArc(n, new Arc(1,n2));
-        G.afegirArc(n2, new Arc(1,n3));
+        G.afegirArc(n, n1, 1);
+        G.afegirArc(n1, n2, 1);
+        G.afegirArc(n1, n3, 1);
+        G.afegirArc(n, n2, 2);
+        G.afegirArc(n2, n3, 1);
 
         System.out.println("mida(arcs): " + G.mida() + " deberia ser: 5");
         System.out.println("ordre(arcs): " + G.ordre() + " deberia ser: 4");
         System.out.println("Treiem node n2");
         G.eliminarNode(n2);
+        G.eliminarArc(n, n1);
         System.out.println("mida(arcs): " + G.mida() + " deberia ser: 2");
         System.out.println("ordre(arcs): "+G.ordre()+" deberia ser: 3");
 
         System.out.println(G);
-        System.out.println(G.getNodesAdjacents(n3));
+        System.out.println(G.getNodesAdjacents(n));
         System.out.println("Size: " + G.mida());
         System.out.println("Order: " + G.ordre());
     }

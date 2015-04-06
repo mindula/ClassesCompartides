@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Graf<T> {
 
-    private Map<Node, ArrayList<T>> adjacencyMap;
+    private Map<T, ArrayList<Arc<T>>> adjacencyMap;
     private int V, E;
 
     public Graf() {
-        adjacencyMap = new HashMap<Node, ArrayList<T>>();
+        adjacencyMap = new HashMap<T, ArrayList<Arc<T>>>();
         V = E = 0;
     }
 
@@ -18,14 +18,23 @@ public class Graf<T> {
         return V;
     }
 
-    public void afegirNode(Node node) {
-        adjacencyMap.put(node, new ArrayList<T>());
+    public void afegirNode(T node) {
+        adjacencyMap.put(node, new ArrayList<Arc<T>>());
         ++V;
     }
 
-    public void afegirArc(Node origen, T desti) {
+    public void afegirArc(T origen, T desti) {
         if (adjacencyMap.containsKey(origen)) {
-            adjacencyMap.get(origen).add(desti);
+            adjacencyMap.get(origen).add(new Arc<T> (desti));
+            ++E;
+        } else {
+            System.out.println("No existeix el node origen");
+        }
+    }
+
+    public void afegirArc(T origen, T desti, double pes) {
+        if (adjacencyMap.containsKey(origen)) {
+            adjacencyMap.get(origen).add(new Arc<T> (pes, desti));
             ++E;
         } else {
             System.out.println("No existeix el node origen");
@@ -33,38 +42,47 @@ public class Graf<T> {
     }
 
 
-    public void eliminarNode(Node node) {
-        for(Node b : adjacencyMap.keySet()){
-            ArrayList<T> bAdjacents = adjacencyMap.get(b);
-            if(bAdjacents.contains(node.getDades())) {
-                bAdjacents.remove(node.getDades());
-                --E;
+    public void eliminarNode(T node) {
+        for(T b : adjacencyMap.keySet()){
+            ArrayList<Arc<T>> bAdjacents = adjacencyMap.get(b);
+            for (Arc<T> a : bAdjacents) {
+                if (a.getNodeDesti() == node) {
+                    bAdjacents.remove(a);
+                    --E;
+                    break;
+                }
             }
         }
-        ArrayList<T> nodeAdjacents = adjacencyMap.get(node);
+        ArrayList<Arc<T>> nodeAdjacents = adjacencyMap.get(node);
         E -= nodeAdjacents.size();
         adjacencyMap.remove(node);
         --V;
     }
 
-    public void eliminarArc(Node origen, T desti) {
-        adjacencyMap.get(origen).remove(desti);
-        --E;
+    public void eliminarArc(T origen, T desti) {
+        ArrayList<Arc<T>> bAdjacents = adjacencyMap.get(origen);
+        for (Arc<T> a : bAdjacents) {
+            if (a.getNodeDesti() == desti) {
+                bAdjacents.remove(a);
+                --E;
+                break;
+            }
+        }
     }
 
-    public Set<Node> getNodes() {
+    public Set<T> getNodes() {
         return adjacencyMap.keySet();
     }
 
-    public ArrayList<T> getNodesAdjacents(Node node) {
+    public ArrayList<Arc<T>> getNodesAdjacents(T node) {
         return adjacencyMap.get(node);
     }
 
-    public int getGrau (Node node) {
+    public int getGrau (T node) {
         return adjacencyMap.get(node).size();
     }
 
-    public boolean existeixNode(Node node) {
+    public boolean existeixNode(T node) {
         return adjacencyMap.containsKey(node);
     }
 
