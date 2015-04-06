@@ -27,7 +27,7 @@ public class DriverGraf {
         System.out.println("ordre(arcs): " + G.ordre() + " deberia ser: 4");
         System.out.println("Treiem node n2");
         G.eliminarNode(n2);
-        G.eliminarArc(n, n1);
+
         System.out.println("mida(arcs): " + G.mida() + " deberia ser: 2");
         System.out.println("ordre(arcs): "+G.ordre()+" deberia ser: 3");
 
