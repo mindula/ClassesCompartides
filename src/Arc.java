@@ -67,8 +67,8 @@ public class Arc<T> {
     }
 
     /**
-     * Retorna una representació de l'arc en String
-     * @return una representació de l'arc en String
+     * Retorna una representació de l'arc en String del tipus {nodeDesti, pes}
+     * @return una representació de l'arc en String del tipus {nodeDesti, pes}
      */
     @Override
     public String toString() {

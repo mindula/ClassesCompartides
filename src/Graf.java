@@ -43,7 +43,6 @@ public class Graf<T> {
     public Graf() {
         adjacencyMap = new HashMap<T, ArrayList<Arc<T>>>();
         V = E = 0;
-
     }
 
     /**
