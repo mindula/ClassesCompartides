@@ -34,14 +34,14 @@ import java.util.*;
 
 public class Graf<T> {
 
-    private Map<T, ArrayList<Arc<T>>> adjacencyMap;
+    private Map<T, Set<Arc<T>>> adjacencyMap;
     private int V, E;
 
     /**
      * Inicialitza un Graf buit
      */
     public Graf() {
-        adjacencyMap = new HashMap<T, ArrayList<Arc<T>>>();
+        adjacencyMap = new HashMap<T, Set<Arc<T>>>();
         V = E = 0;
     }
 
@@ -70,7 +70,7 @@ public class Graf<T> {
         if(adjacencyMap.containsKey(node))
             throw new RuntimeException("No es pot inserir el mateix node multiples vegades al mateix graf");
 
-        adjacencyMap.put(node, new ArrayList<Arc<T>>());
+        adjacencyMap.put(node, new LinkedHashSet<Arc<T>>());
         ++V;
     }
 
@@ -110,18 +110,11 @@ public class Graf<T> {
             throw new RuntimeException("No es pot eliminar un node que no està dins el graf");
 
         for(T b : adjacencyMap.keySet()){
-            ArrayList<Arc<T>> bAdjacents = adjacencyMap.get(b);
-            int i = 0;
-            while(i <bAdjacents.size()) {
-                Arc<T> a = bAdjacents.get(i);
-                if (a.getNodeDesti() == node) {
-                    bAdjacents.remove(a);
-                    --E;
-                } else i++;
-            }
+            Set<Arc<T>> bAdjacents = adjacencyMap.get(b);
+            if (bAdjacents.remove(new Arc<T> (node))) --E;
         }
 
-        ArrayList<Arc<T>> nodeAdjacents = adjacencyMap.get(node);
+        Set<Arc<T>> nodeAdjacents = adjacencyMap.get(node);
         E -= nodeAdjacents.size();
         adjacencyMap.remove(node);
         --V;
@@ -133,20 +126,10 @@ public class Graf<T> {
      * @param nodeDesti
      * @throws RuntimeException si no existeix cap arc entre els nodes dins el graf
      */
-    public void eliminarArcs(T nodeOrigen, T nodeDesti) {
-        ArrayList<Arc<T>> bAdjacents = adjacencyMap.get(nodeOrigen);
-        boolean trobat = false;
-        int i = 0;
-        while(i < bAdjacents.size()) {
-            Arc<T> a = bAdjacents.get(i);
-            if (a.getNodeDesti() == nodeDesti) {
-                bAdjacents.remove(a);
-                --E;
-                trobat = true;
-            } ++i;
-        }
-        if(!trobat)
-            throw new RuntimeException("L'arc no existeix");
+    public void eliminarArc(T nodeOrigen, T nodeDesti) {
+        Set<Arc<T>> bAdjacents = adjacencyMap.get(nodeOrigen);
+        if (bAdjacents.remove(new Arc<T> (nodeDesti))) --E;
+        else throw new RuntimeException("L'arc no existeix");
     }
 
     /**
@@ -162,7 +145,7 @@ public class Graf<T> {
      * @param node
      * @return una ArrayList amb els arcs que surten d'un node <tt>node</tt>
      */
-    public ArrayList<Arc<T>> getNodesAdjacents(T node) {
+    public Set<Arc<T>> getNodesAdjacents(T node) {
         return adjacencyMap.get(node);
     }
 
@@ -197,13 +180,11 @@ public class Graf<T> {
             throw new  RuntimeException("El node origen ha d'estar previament al graf");
         if (!adjacencyMap.containsKey(nodeDesti))
             throw new  RuntimeException("El node desti ha d'estar previament al graf");
-        ArrayList<Arc<T>> bAdjacents = adjacencyMap.get(nodeOrigen);
-        int i = 0;
-        while (i < bAdjacents.size()) {
-            Arc<T> a = bAdjacents.get(i);
+        Set<Arc<T>> bAdjacents = adjacencyMap.get(nodeOrigen);
+        for (Arc<T> a : bAdjacents) {
             if (a.getNodeDesti() == nodeDesti) {
                 return true;
-            } ++i;
+            }
         }
         return false;
     }

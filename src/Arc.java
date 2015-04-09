@@ -24,9 +24,27 @@ public class Arc<T> {
         this.nodeDesti = nodeDesti;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Arc arc = (Arc) o;
+
+        if (!nodeDesti.equals(arc.nodeDesti)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return nodeDesti.hashCode();
+    }
+
     /**
      * Crea un arc amb pes <tt>pes</tt> i un node de destí <tt>nodeDesti</tt>
      * @param pes
+
      * @param nodeDesti
      */
     public Arc(double pes, T nodeDesti) {

@@ -1,39 +1,40 @@
+import java.util.*;
 
 public class DriverGraf {
+
+    private int type;
+    Graf<NodeProva> G;
+
+    public void print(Object o) {
+        System.out.println(o);
+
+    }
+
     public void main() {
-        Graf<NodeLouvain> G = new Graf<NodeLouvain>();
-        String s = "Ricard";
-        String s1 = "Peter";
-        String s2 = "Juliana";
-        String s3 = "Sopas";
+        /*G = new Graf<Integer>();
+        Scanner input = new Scanner(System.in);
+        print("Entri els nodes del graf:");
+        input = new Scanner(System.in);
+        while (input.hasNextInt()) {
+            G.afegirNode(input.nextInt());
+        }
+        print("Entra les conexions que desitgis, amb el seu pes:");
+        input = new Scanner(System.in);
+        while (input.hasNextInt()) {
+            int o = input.nextInt();
+            int d = input.nextInt();
+            double p = input.nextInt();
+            G.afegirArc(o, d, p);
+        }
+        print(G);*/
+        G = new Graf<NodeProva>();
+        G.afegirNode(new NodeProva("Ricard"));
+        G.afegirNode(new NodeProva("Guillem"));
+        G.afegirNode(new NodeProva("Albert"));
+        //G.afegirArc(new NodeProva("Ricard"), new NodeProva("Albert"));
+        //G.afegirArc(new NodeProva("Ricard"), new NodeProva("Albert"), 42);
+        G.eliminarArc(new NodeProva("Ricard"), new NodeProva("Albert"));
+        print(G);
 
-        NodeLouvain n = new NodeLouvain(s);
-        NodeLouvain n1 = new NodeLouvain(s1);
-        NodeLouvain n2 = new NodeLouvain(s2);
-        NodeLouvain n3 = new NodeLouvain(s3);
-
-        G.afegirNode(n);
-        G.afegirNode(n1);
-        G.afegirNode(n2);
-        G.afegirNode(n3);
-
-        G.afegirArc(n, n1, 1);
-        G.afegirArc(n1, n2, 1);
-        G.afegirArc(n1, n3, 1);
-        G.afegirArc(n, n2, 2);
-        G.afegirArc(n2, n3, 1);
-
-        System.out.println("mida(arcs): " + G.mida() + " deberia ser: 5");
-        System.out.println("ordre(arcs): " + G.ordre() + " deberia ser: 4");
-        System.out.println("Treiem node n2");
-        G.eliminarNode(n2);
-
-        System.out.println("mida(arcs): " + G.mida() + " deberia ser: 2");
-        System.out.println("ordre(arcs): "+G.ordre()+" deberia ser: 3");
-
-        System.out.println(G);
-        System.out.println(G.getNodesAdjacents(n));
-        System.out.println("Size: " + G.mida());
-        System.out.println("Order: " + G.ordre());
     }
 }
