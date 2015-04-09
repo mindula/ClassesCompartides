@@ -25,7 +25,7 @@
  *  trobi pertinent.
  *  <p>
  *  Aquesta implementació utilitza llistes d'adjacència per representar
- *  el digraf, què són un seguit d'ArrayLists contingudes dins un Map.
+ *  el digraf, què són un seguit de Sets continguts dins un Map.
  *  Degut a això, es permet afegir més d'un arc entre dos nodes donats.
  *  És responsabilitat del programador les possibles conseqüencies que això
  *  podria suposar.
