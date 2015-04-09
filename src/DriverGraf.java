@@ -11,30 +11,23 @@ public class DriverGraf {
     }
 
     public void main() {
-        /*G = new Graf<Integer>();
-        Scanner input = new Scanner(System.in);
-        print("Entri els nodes del graf:");
-        input = new Scanner(System.in);
-        while (input.hasNextInt()) {
-            G.afegirNode(input.nextInt());
-        }
-        print("Entra les conexions que desitgis, amb el seu pes:");
-        input = new Scanner(System.in);
-        while (input.hasNextInt()) {
-            int o = input.nextInt();
-            int d = input.nextInt();
-            double p = input.nextInt();
-            G.afegirArc(o, d, p);
-        }
-        print(G);*/
         G = new Graf<NodeProva>();
         G.afegirNode(new NodeProva("Ricard"));
         G.afegirNode(new NodeProva("Guillem"));
         G.afegirNode(new NodeProva("Albert"));
-        //G.afegirArc(new NodeProva("Ricard"), new NodeProva("Albert"));
-        //G.afegirArc(new NodeProva("Ricard"), new NodeProva("Albert"), 42);
-        G.eliminarArc(new NodeProva("Ricard"), new NodeProva("Albert"));
+        G.afegirNode(new NodeProva("Eudald"));
+        G.afegirArc(new NodeProva("Ricard"), new NodeProva("Albert"));
+        G.modificarPesArc(new NodeProva("Ricard"), new NodeProva("Albert"), 42);
+        G.afegirArc(new NodeProva("Ricard"), new NodeProva("Eudald"));
+        G.afegirArc(new NodeProva("Eudald"), new NodeProva("Ricard"));
+        print(G.mida() + " " + G.ordre());
         print(G);
+        print(G.existeixArc(new NodeProva("Ricard"), new NodeProva("Eudald")));
+        G.eliminarNode(new NodeProva("Ricard"));
+        //G.eliminarArc(new NodeProva("Ricard"), new NodeProva("Albert"));
+        print (G.mida() + " " + G.ordre());
+        print(G);
+        print(G.existeixArc(new NodeProva("Albert"), new NodeProva("Eudald")));
 
     }
 }
