@@ -100,6 +100,11 @@ public class Graf<T> {
         ++E;
     }
 
+    public void modificarPesArc(T nodeOrigen, T nodeDesti, double nouPes) {
+        adjacencyMap.get(nodeOrigen).remove(new Arc<T> (nodeDesti));
+        adjacencyMap.get(nodeOrigen).add(new Arc<T> (nouPes, nodeDesti));
+    }
+
     /**
      * Elimina un node <tt>node</tt> del graf.
      * @param node
@@ -180,13 +185,7 @@ public class Graf<T> {
             throw new  RuntimeException("El node origen ha d'estar previament al graf");
         if (!adjacencyMap.containsKey(nodeDesti))
             throw new  RuntimeException("El node desti ha d'estar previament al graf");
-        Set<Arc<T>> bAdjacents = adjacencyMap.get(nodeOrigen);
-        for (Arc<T> a : bAdjacents) {
-            if (a.getNodeDesti() == nodeDesti) {
-                return true;
-            }
-        }
-        return false;
+        return adjacencyMap.get(nodeOrigen).contains(new Arc<T> (nodeDesti));
     }
 
     /**

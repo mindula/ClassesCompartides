@@ -20,8 +20,7 @@ public class Arc<T> {
       * @param nodeDesti
      */
     public Arc(T nodeDesti) {
-        this.pes = 0;
-        this.nodeDesti = nodeDesti;
+        this.pes = 0;            this.nodeDesti = nodeDesti;
     }
 
     @Override
