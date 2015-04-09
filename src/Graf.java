@@ -98,11 +98,12 @@ public class Graf<T> {
             throw new  RuntimeException("El node desti ha d'estar previament al graf");
 
         Arc a = new Arc<T>(pes, nodeDesti);
-        if(adjacencyMap.get(nodeOrigen).contains(a)){
+        Set<Arc<T>> adjacents = adjacencyMap.get(nodeOrigen);
+        if(adjacents.contains(a)){
             throw new  RuntimeException("El arc ja existeix");
         }
         else{
-            adjacencyMap.get(nodeOrigen).add(a);
+            adjacents.add(a);
             ++E;
 
         }
