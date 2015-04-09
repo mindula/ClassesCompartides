@@ -1,4 +1,4 @@
-
+    //S'ha de posar al Projecte propi
 public class Node<T> {
     private T id;
 
