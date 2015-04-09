@@ -13,7 +13,7 @@
 
 public class Arc<T> {
     private double pes;
-    private T nodeDesti;
+    private final T nodeDesti;
 
     /**
      * Crea un arc amb pes 0 i un node de destí <tt>nodeDesti</tt>
@@ -73,14 +73,6 @@ public class Arc<T> {
      */
     public T getNodeDesti() {
         return nodeDesti;
-    }
-
-    /**
-     * Modifica el node de destí a <tt>nodeDesti</tt>
-     * @param nodeDesti
-     */
-    public void setNodeDesti(T nodeDesti) {
-        this.nodeDesti = nodeDesti;
     }
 
     /**
