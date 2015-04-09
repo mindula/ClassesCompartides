@@ -21,6 +21,8 @@
  *  mida respectivament. També es pot consultar el nombre d'arcs adjacents a un
  *  node, consultar si existeix un node en concret dins el digraf i consultar
  *  si hi ha algun arc entre dos nodes donats.
+ *  IMPORTANT: el paràmetre T ha d'implementar la funció equals que el programador
+ *  trobi pertinent.
  *  <p>
  *  Aquesta implementació utilitza llistes d'adjacència per representar
  *  el digraf, què són un seguit d'ArrayLists contingudes dins un Map.
@@ -43,6 +45,16 @@ public class Graf<T> {
     public Graf() {
         adjacencyMap = new HashMap<T, Set<Arc<T>>>();
         V = E = 0;
+    }
+
+    public Graf(Graf G) {
+        Set<T> setNodes = G.getNodes();
+        for (T t : setNodes) {
+            Set<Arc<T>> setAdjacents = G.getNodesAdjacents(t);
+            for (Arc<T> a : setAdjacents) {
+                this.afegirArc(t, a.getNodeDesti(), a.getPes());
+            }
+        }
     }
 
     /**
@@ -146,9 +158,9 @@ public class Graf<T> {
     }
 
     /**
-     * Retorna una ArrayList amb els arcs que surten d'un node <tt>node</tt>
+     * Retorna una Set amb els arcs que surten d'un node <tt>node</tt>
      * @param node
-     * @return una ArrayList amb els arcs que surten d'un node <tt>node</tt>
+     * @return una Set amb els arcs que surten d'un node <tt>node</tt>
      */
     public Set<Arc<T>> getNodesAdjacents(T node) {
         return adjacencyMap.get(node);
@@ -196,4 +208,5 @@ public class Graf<T> {
     public String toString() {
         return adjacencyMap.toString();
     }
+
 }
