@@ -109,14 +109,13 @@ public class Graf<T> {
         if (!adjacencyMap.containsKey(nodeDesti))
             throw new  RuntimeException("El node desti ha d'estar previament al graf");
 
-        Arc a = new Arc<T>(pes, nodeDesti);
+        Arc<T> a = new Arc<T>(pes, nodeDesti);
         if(adjacencyMap.get(nodeOrigen).contains(a)){
-            throw new  RuntimeException("El arc ja existeix");
+            throw new  RuntimeException("L'arc ja existeix");
         }
         else{
             adjacencyMap.get(nodeOrigen).add(a);
             ++E;
-
         }
 
     }
