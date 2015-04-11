@@ -8,7 +8,7 @@
  *************************************************************************/
 
 /**
- *  La classe <tt>Arc</tt> representa un arc amb pes, amb el nodeA parametritzat.
+ *  La classe <tt>Arc</tt> representa un arc amb pes, amb nodeA i nodeB parametritzat.
  */
 
 public class Arc<T> {
@@ -16,7 +16,7 @@ public class Arc<T> {
     private final T nodeA, nodeB;
 
     /**
-     * Crea un arc amb pes <tt>pes</tt> i un node de destí <tt>nodeA</tt>
+     * Crea un arc amb pes <tt>pes</tt>, un node origen <tt>nodeA</tt> i un node de destí <tt>nodeB</tt>
      * @param pes
 
      * @param nodeA
@@ -26,7 +26,6 @@ public class Arc<T> {
         this.nodeA = nodeA;
         this.nodeB = nodeB;
     }
-
     /**
      * Crea un arc amb pes 0 i un node de destí <tt>nodeA</tt>
       * @param nodeA
@@ -49,13 +48,16 @@ public class Arc<T> {
         Arc arc = (Arc) o;
 
         if (!nodeA.equals(arc.nodeA)) return false;
+        if (!nodeB.equals(arc.nodeB)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return nodeA.hashCode();
+        int result = nodeA.hashCode();
+        result = 31 * result + nodeB.hashCode();
+        return result;
     }
 
     /**
