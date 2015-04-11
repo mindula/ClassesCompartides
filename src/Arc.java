@@ -8,19 +8,37 @@
  *************************************************************************/
 
 /**
- *  La classe <tt>Arc</tt> representa un arc amb pes, amb el nodeDesti parametritzat.
+ *  La classe <tt>Arc</tt> representa un arc amb pes, amb el nodeA parametritzat.
  */
 
 public class Arc<T> {
     private double pes;
-    private final T nodeDesti;
+    private final T nodeA, nodeB;
 
     /**
-     * Crea un arc amb pes 0 i un node de destí <tt>nodeDesti</tt>
-      * @param nodeDesti
+     * Crea un arc amb pes <tt>pes</tt> i un node de destí <tt>nodeA</tt>
+     * @param pes
+
+     * @param nodeA
      */
-    public Arc(T nodeDesti) {
-        this.pes = 0;            this.nodeDesti = nodeDesti;
+    public Arc(double pes, T nodeA, T nodeB) {
+        this.pes = pes;
+        this.nodeA = nodeA;
+        this.nodeB = nodeB;
+    }
+
+    /**
+     * Crea un arc amb pes 0 i un node de destí <tt>nodeA</tt>
+      * @param nodeA
+     */
+    public Arc(T nodeA, T nodeB) {
+       this(0, nodeA, nodeB);
+    }
+
+    public Arc(Arc<T> other){
+        this.pes = other.pes;
+        this.nodeA = other.nodeA;
+        this.nodeB = other.nodeB;
     }
 
     @Override
@@ -30,25 +48,14 @@ public class Arc<T> {
 
         Arc arc = (Arc) o;
 
-        if (!nodeDesti.equals(arc.nodeDesti)) return false;
+        if (!nodeA.equals(arc.nodeA)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return nodeDesti.hashCode();
-    }
-
-    /**
-     * Crea un arc amb pes <tt>pes</tt> i un node de destí <tt>nodeDesti</tt>
-     * @param pes
-
-     * @param nodeDesti
-     */
-    public Arc(double pes, T nodeDesti) {
-        this.pes = pes;
-        this.nodeDesti = nodeDesti;
+        return nodeA.hashCode();
     }
 
     /**
@@ -68,19 +75,27 @@ public class Arc<T> {
     }
 
     /**
-     * Retorna el node de destí de l'arc
-     * @return el node de destí de l'arc
+     * Retorna el node A de l'arc
+     * @return el node A de l'arc
      */
-    public T getNodeDesti() {
-        return nodeDesti;
+    public T getNodeA() {
+        return nodeA;
     }
 
     /**
-     * Retorna una representació de l'arc en String del tipus {nodeDesti, pes}
-     * @return una representació de l'arc en String del tipus {nodeDesti, pes}
+     * Retorna el node B de l'arc
+     * @return el node B de l'arc
+     */
+    public T getNodeB() {
+        return nodeB;
+    }
+
+    /**
+     * Retorna una representació de l'arc en String del tipus {nodeA, pes}
+     * @return una representació de l'arc en String del tipus {nodeA, pes}
      */
     @Override
     public String toString() {
-        return "{" + nodeDesti + "," + pes + "}";
+        return "{ " + nodeA + " , " + nodeB + " ( "+pes+" )}";
     }
 }
