@@ -50,6 +50,7 @@ public class Graf<T> {
     public Graf(Graf G) {
         Set<T> setNodes = G.getNodes();
         for (T t : setNodes) {
+            this.afegirNode(t);
             Set<Arc<T>> setAdjacents = G.getNodesAdjacents(t);
             for (Arc<T> a : setAdjacents) {
                 this.afegirArc(t, a.getNodeDesti(), a.getPes());
