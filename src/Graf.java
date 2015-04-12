@@ -48,19 +48,10 @@ public class Graf<T> {
         V = E = 0;
     }
 
-
-    private Arc<T> getArcEntre(T nodeA, T nodeB){
-        Arc<T> arc = null;
-        Set<Arc<T>> adjacentsA = adjacencyMap.get(nodeA);
-        for(Arc<T> a : adjacentsA){
-            if(a.getNodeB() == nodeB || a.getNodeA() == nodeB){
-                arc = a;
-                break;
-            }
-        }
-        return arc;
-    }
-    
+    /**
+     * Constructor còpia. Còpia un graf <tt>other</tt> al paràmetre implicit
+     * @param other
+     */
     public Graf(Graf<T> other) {
         adjacencyMap = new HashMap<T, Set<Arc<T>>>();
         for (T n : other.adjacencyMap.keySet()){
@@ -189,6 +180,24 @@ public class Graf<T> {
      */
     public Set<Arc<T>> getNodesAdjacents(T node) {
         return adjacencyMap.get(node);
+    }
+
+    /**
+     * Retorna l'arc entre <tt>nodeA</tt> i <tt>nodeB</tt>
+     * @param nodeA
+     * @param nodeB
+     * @return l'arc entre <tt>nodeA</tt> i <tt>nodeB</tt>
+     */
+    private Arc<T> getArcEntre(T nodeA, T nodeB){
+        Arc<T> arc = null;
+        Set<Arc<T>> adjacentsA = adjacencyMap.get(nodeA);
+        for(Arc<T> a : adjacentsA){
+            if(a.getNodeB() == nodeB || a.getNodeA() == nodeB){
+                arc = a;
+                break;
+            }
+        }
+        return arc;
     }
 
     /**
