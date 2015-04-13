@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Created by gus on 09/04/15.
  */
-public class AlgoritmeLouvain extends Algoritme<NodeLovain> {
+/*public class AlgoritmeLouvain extends Algoritme<NodeLovain> {
     @Override
     ArrayList<Comunitat<NodeLovain>> cercarComunitats(Graf<NodeLovain> graf) {
         ArrayList<Comunitat<NodeLovain>> comunitats = new ArrayList<Comunitat<NodeLovain>>();
@@ -28,4 +28,4 @@ public class AlgoritmeLouvain extends Algoritme<NodeLovain> {
 
         return null;
     }
-}
+}*/

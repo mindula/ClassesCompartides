@@ -21,12 +21,13 @@ public class Test {
 
         System.out.println("ordre Graf:" + testGraf.ordre() + " :  4");
 
-        testGraf.afegirArc("1", "2", 1);
+        Arc<String> a = new Arc<String>(1, "1", "2");
+        testGraf.afegirArc(a);
         //testGraf.afegirArc("2", "1", 1);
         System.out.println("Mida Graf:" + testGraf.mida() + " :  2");
 
         try {
-            testGraf.afegirArc("1", "2", 1);
+            testGraf.afegirArc(a);
             System.out.println("FUCK");
         }catch(RuntimeException ex){
             System.out.println(ex.getLocalizedMessage());
@@ -34,7 +35,7 @@ public class Test {
 
         System.out.println("tostring preBorrat:" + testGraf.toString());
 
-        testGraf.eliminarArc("1", "2");
+        testGraf.eliminarArc(a);
         System.out.println("Mida Graf:" + testGraf.mida() + " :  1");
 
         testGraf.eliminarNode("1");

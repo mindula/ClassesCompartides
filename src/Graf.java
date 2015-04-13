@@ -103,39 +103,24 @@ public class Graf<T> {
     }
 
     /**
-     * Afegeix un arc amb pes 0 del node <tt>nodeOrigen</tt> a <tt>nodeDesti</tt>. Veure el mètode afegirArc
-     * de sota per més informació.
-     * @param nodeOrigen
-     * @param nodeDesti
-     */
-    public void afegirArc(T nodeOrigen, T nodeDesti) {
-        afegirArc(nodeOrigen, nodeDesti, 0);
-    }
-
-    /**
-     * Afegeix un arc entre del node <tt>nodeOrigen</tt> a <tt>nodeDesti</tt>.
-     * @param nodeOrigen
-     * @param nodeDesti
-     * @param pes
+     * Afegeix un arc <tt>a</tt>
+     * @param a
      * @throws RuntimeException quan algun dels dos nodes no existeix al graf
      */
-    public void afegirArc(T nodeOrigen, T nodeDesti, double pes) {
-        if (!adjacencyMap.containsKey(nodeOrigen))
+    public void afegirArc(Arc<T> a) {
+        if (!adjacencyMap.containsKey(a.getNodeA()))
             throw new  RuntimeException("El node origen ha d'estar previament al graf");
-        if (!adjacencyMap.containsKey(nodeDesti))
+        if (!adjacencyMap.containsKey(a.getNodeB()))
             throw new  RuntimeException("El node desti ha d'estar previament al graf");
 
-
-            Arc<T> a = new Arc<T>(pes, nodeDesti, nodeOrigen);
-            if(adjacencyMap.get(nodeOrigen).contains(a)){
+        if(adjacencyMap.get(a.getNodeA()).contains(a)){
                 throw new  RuntimeException("L'arc ja existeix");
-            }
-            else{
-
-                adjacencyMap.get(nodeOrigen).add(a);
-                adjacencyMap.get(nodeDesti).add(a);
+        }
+        else{
+            adjacencyMap.get(a.getNodeA()).add(a);
+            adjacencyMap.get(a.getNodeB()).add(a);
             ++E;
-             }
+        }
 
     }
 
