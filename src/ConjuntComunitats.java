@@ -19,7 +19,7 @@ public class ConjuntComunitats<T> {
      * Afegeix una comunitat al conjunt
      * @param c
      */
-    public void afegirCominitat(Comunitat<T> c) {
+    public void afegirComunitat(Comunitat<T> c) {
         this.cjtComunitats.add(c);
     }
 
