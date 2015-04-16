@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import org.grupwiki.graf.ConjuntComunitats;
+import org.grupwiki.graf.Graf;
 
 /**
  * Aquesta classe cerca comunitats en un graf a partir d'un seguit de paràmetres
