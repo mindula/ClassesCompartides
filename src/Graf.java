@@ -37,14 +37,14 @@ import java.util.*;
 
 public class Graf<T> {
 
-    protected Map<T, Set<Arc<T>>> adjacencyMap;
+    protected Map<T, Map<T, Arc<T>>> adjacencyMap;
     private int V, E;
 
     /**
      * Inicialitza un Graf buit
      */
     public Graf() {
-        adjacencyMap = new HashMap<T, Set<Arc<T>>>();
+        adjacencyMap = new HashMap<T, Map<T, Arc<T>>>();
         V = E = 0;
     }
 
@@ -53,11 +53,11 @@ public class Graf<T> {
      * @param other
      */
     public Graf(Graf<T> other) {
-        adjacencyMap = new HashMap<T, Set<Arc<T>>>();
-        for (T n : other.adjacencyMap.keySet()){
-            Set<Arc<T>> otherAdjacents = other.adjacencyMap.get(n);
+        adjacencyMap = new HashMap<T, Map<T, Arc<T>>>();
+        for (T n : other.adjacencyMap.keySet()) {
+            Map<T, Arc<T>> otherAdjacents = other.adjacencyMap.get(n);
             Set<Arc<T>> adjacents = new LinkedHashSet<Arc<T>>();
-            for (Arc<T> otherArc : otherAdjacents){
+            for (Map<T, Arc<T> otherArc : otherAdjacents){
                 Arc<T> arc;
 
                 if(adjacencyMap.containsKey(otherArc.getNodeA()) || adjacencyMap.containsKey(otherArc.getNodeA()) ){
@@ -98,27 +98,27 @@ public class Graf<T> {
         if(adjacencyMap.containsKey(node))
             throw new RuntimeException("No es pot inserir el mateix node multiples vegades al mateix graf");
 
-        adjacencyMap.put(node, new LinkedHashSet<Arc<T>>());
+        adjacencyMap.put(node, new HashMap<T, Arc<T>>());
         ++V;
     }
 
     /**
      * Afegeix un arc <tt>a</tt>
-     * @param a
+     * @param arc
      * @throws RuntimeException quan algun dels dos nodes no existeix al graf
      */
-    public void afegirArc(Arc<T> a) {
-        if (!adjacencyMap.containsKey(a.getNodeA()))
+    public void afegirArc(Arc<T> arc) {
+        if (!adjacencyMap.containsKey(arc.getNodeA()))
             throw new  RuntimeException("El node origen ha d'estar previament al graf");
-        if (!adjacencyMap.containsKey(a.getNodeB()))
+        if (!adjacencyMap.containsKey(arc.getNodeB()))
             throw new  RuntimeException("El node desti ha d'estar previament al graf");
 
-        if(adjacencyMap.get(a.getNodeA()).contains(a)){
+        if(adjacencyMap.get(arc.getNodeA()).containsKey(arc.getNodeB())){
                 throw new  RuntimeException("L'arc ja existeix");
         }
         else{
-            adjacencyMap.get(a.getNodeA()).add(a);
-            adjacencyMap.get(a.getNodeB()).add(a);
+            adjacencyMap.get(arc.getNodeA()).put(arc.getNodeB(), arc);
+            adjacencyMap.get(arc.getNodeB()).put(arc.getNodeA(), arc);
             ++E;
         }
 
@@ -134,6 +134,13 @@ public class Graf<T> {
         if(!adjacencyMap.containsKey(node))
             throw new RuntimeException("No es pot eliminar un node que no està dins el graf");
 
+        Set<T> s = adjacencyMap.keySet();
+        for (T t : s) {
+            if (adjacencyMap.get(t).containsKey(node)) {
+                adjacencyMap.get(t).remove(node);
+                --E;
+            }
+        }
         adjacencyMap.remove(node);
         --V;
     }
@@ -141,8 +148,8 @@ public class Graf<T> {
 
     public void eliminarArc(Arc<T> arc) {
 
-        Set<Arc<T>> aAdjacents = adjacencyMap.get(arc.getNodeA());
-        Set<Arc<T>> bAdjacents = adjacencyMap.get(arc.getNodeB());
+        Collection<Arc<T>> aAdjacents = adjacencyMap.get(arc.getNodeA()).values();
+        Collection<Arc<T>> bAdjacents = adjacencyMap.get(arc.getNodeB()).values();
 
         if(! aAdjacents.remove(arc) || !bAdjacents.remove(arc))
             throw new RuntimeException("L'arc no existeix");
@@ -164,7 +171,8 @@ public class Graf<T> {
      * @return una Set amb els arcs que surten d'un node <tt>node</tt>
      */
     public Set<Arc<T>> getNodesAdjacents(T node) {
-        return adjacencyMap.get(node);
+        Set<Arc<T>> set = new HashSet<Arc<T>>(adjacencyMap.get(node).values());
+        return set;
     }
 
     /**
@@ -174,15 +182,7 @@ public class Graf<T> {
      * @return l'arc entre <tt>nodeA</tt> i <tt>nodeB</tt>
      */
     private Arc<T> getArcEntre(T nodeA, T nodeB){
-        Arc<T> arc = null;
-        Set<Arc<T>> adjacentsA = adjacencyMap.get(nodeA);
-        for(Arc<T> a : adjacentsA){
-            if(a.getNodeB() == nodeB || a.getNodeA() == nodeB){
-                arc = a;
-                break;
-            }
-        }
-        return arc;
+        return adjacencyMap.get(nodeA).get(nodeB);
     }
 
     /**
@@ -217,11 +217,7 @@ public class Graf<T> {
         if (!adjacencyMap.containsKey(nodeDesti))
             throw new  RuntimeException("El node desti ha d'estar previament al graf");
 
-        for(Arc<T> arc : adjacencyMap.get(nodeDesti)){
-            if(arc.getNodeA() == nodeOrigen ||arc.getNodeB() == nodeOrigen)
-                return true;
-        }
-        return false;
+        return adjacencyMap.get(nodeOrigen).containsKey(nodeDesti);
     }
 
     /**
