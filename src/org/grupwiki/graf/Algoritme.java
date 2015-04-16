@@ -1,3 +1,5 @@
+package org.grupwiki.graf;
+
 import org.grupwiki.graf.ConjuntComunitats;
 import org.grupwiki.graf.Graf;
 
@@ -7,5 +9,5 @@ import org.grupwiki.graf.Graf;
  */
 
 public abstract class Algoritme<T>  {
-    abstract ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int k, int l);
+    public abstract ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int k, int l);
 }

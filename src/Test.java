@@ -1,3 +1,4 @@
+import org.grupwiki.graf.Arc;
 import org.grupwiki.graf.Graf;
 
 public class Test {
