@@ -34,6 +34,7 @@ public class Test {
         }
 
         System.out.println("tostring preBorrat:" + testGraf.toString());
+        Graf<String> copiaGraf = new Graf<String>(testGraf);
 
         testGraf.eliminarArc(a);
         System.out.println("Mida Graf:" + testGraf.mida() + " :  1");
@@ -44,8 +45,7 @@ public class Test {
         System.out.println("tostring postBorrat:" + testGraf.toString());
 
         System.out.println(testGraf);
-        /*Graf<String> copiaGraf = new Graf<String>(testGraf);
-        System.out.println(copiaGraf);*/
+        System.out.println(copiaGraf);
 
     }
 }
