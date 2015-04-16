@@ -1,3 +1,6 @@
+import org.grupwiki.graf.Arc;
+import org.grupwiki.graf.Graf;
+
 public class Test {
 
     public static void main(String[] args) {

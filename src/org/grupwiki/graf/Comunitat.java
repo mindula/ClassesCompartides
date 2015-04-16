@@ -1,3 +1,5 @@
+package org.grupwiki.graf;
+
 import java.util.ArrayList;
 
 /**
