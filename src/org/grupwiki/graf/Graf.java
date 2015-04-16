@@ -1,3 +1,5 @@
+package org.grupwiki.graf;
+
 /*************************************************************************
  *  Compilació:   javac Graf.java
  *  Execució:     java Graf
