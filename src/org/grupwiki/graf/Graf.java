@@ -54,23 +54,7 @@ public class Graf<T> {
      */
     public Graf(Graf<T> other) {
         adjacencyMap = new HashMap<T, Map<T, Arc<T>>>();
-        for (T n : other.adjacencyMap.keySet()) {
-            Map<T, Arc<T>> otherAdjacents = other.adjacencyMap.get(n);
-            Set<Arc<T>> adjacents = new LinkedHashSet<Arc<T>>();
-            for (Map<T, Arc<T> otherArc : otherAdjacents){
-                Arc<T> arc;
 
-                if(adjacencyMap.containsKey(otherArc.getNodeA()) || adjacencyMap.containsKey(otherArc.getNodeA()) ){
-                    arc = getArcEntre(otherArc.getNodeA(), otherArc.getNodeB());
-                }
-                else{
-                    arc = new Arc<T>(otherArc);
-                }
-                adjacents.add(arc);
-
-            }
-            adjacencyMap.put(n, adjacents);
-        }
     }
 
     /**
