@@ -183,7 +183,7 @@ public class Graf<T> {
      * @param nodeB
      * @return l'arc entre <tt>nodeA</tt> i <tt>nodeB</tt>
      */
-    private Arc<T> getArcEntre(T nodeA, T nodeB){
+    private Arc<T> getArcEntre(T nodeA, T nodeB) {
         return adjacencyMap.get(nodeA).get(nodeB);
     }
 
