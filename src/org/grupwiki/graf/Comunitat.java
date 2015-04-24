@@ -8,8 +8,8 @@ import java.util.ArrayList;
  */
 
 public class Comunitat<T> {
-    int id;
-    ArrayList<T> nodes;
+    private int id;
+    protected ArrayList<T> nodes;
 
     /**
      * Constructor per defecte, a partir d'un identificador <tt>id</tt> inicialitza les estructures internes
