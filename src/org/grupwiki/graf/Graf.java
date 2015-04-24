@@ -11,7 +11,7 @@ package org.grupwiki.graf;
  *************************************************************************/
 
 /**
- *  La classe <tt>Graf</tt> representa un graf no dirigit amb pesos als arcs,
+ *  La classe <tt>Graf</tt> representa un graf NO dirigit amb pesos als arcs,
  *  amb vèrtex parametritzats; cada arc és del tipus {@link Arc}
  *  i té un pes en el rang dels reals.
  *  La classe suporta un seguit d'opracions primaries: afegir un node,
@@ -111,9 +111,9 @@ public class Graf<T> {
      */
     public void afegirArc(Arc<T> arc) {
         if (!adjacencyMap.containsKey(arc.getNodeA()))
-            throw new  RuntimeException("El node origen ha d'estar previament al graf");
+            throw new  RuntimeException("El node A ha d'estar previament al graf");
         if (!adjacencyMap.containsKey(arc.getNodeB()))
-            throw new  RuntimeException("El node desti ha d'estar previament al graf");
+            throw new  RuntimeException("El node B ha d'estar previament al graf");
 
         if(adjacencyMap.get(arc.getNodeA()).containsKey(arc.getNodeB())){
                 throw new  RuntimeException("L'arc ja existeix");
@@ -173,8 +173,7 @@ public class Graf<T> {
      * @return una Set amb els arcs que surten d'un node <tt>node</tt>
      */
     public Set<Arc<T>> getNodesAdjacents(T node) {
-        Set<Arc<T>> set = new HashSet<Arc<T>>(adjacencyMap.get(node).values());
-        return set;
+        return new HashSet<Arc<T>>(adjacencyMap.get(node).values());
     }
 
     /**
@@ -183,7 +182,7 @@ public class Graf<T> {
      * @param nodeB
      * @return l'arc entre <tt>nodeA</tt> i <tt>nodeB</tt>
      */
-    private Arc<T> getArcEntre(T nodeA, T nodeB) {
+    public Arc<T> getArcEntre(T nodeA, T nodeB) {
         return adjacencyMap.get(nodeA).get(nodeB);
     }
 
@@ -206,20 +205,20 @@ public class Graf<T> {
     }
 
     /**
-     * Retorna un valor indicant si existeix un arc del node <tt>nodeOrigen</tt> a
-     * <tt>nodeDesti</tt>
-     * @param nodeOrigen
-     * @param nodeDesti
-     * @return un valor indicant si existeix un arc del node <tt>nodeOrigen</tt> a
-     * <tt>nodeDesti</tt>
+     * Retorna un valor indicant si existeix un arc del node <tt>nodeA</tt> a
+     * <tt>nodeB</tt>
+     * @param nodeA
+     * @param nodeB
+     * @return un valor indicant si existeix un arc del node <tt>nodeA</tt> a
+     * <tt>nodeB</tt>
      */
-    public boolean existeixArc(T nodeOrigen, T nodeDesti) {
-        if (!adjacencyMap.containsKey(nodeOrigen))
-            throw new  RuntimeException("El node origen ha d'estar previament al graf");
-        if (!adjacencyMap.containsKey(nodeDesti))
-            throw new  RuntimeException("El node desti ha d'estar previament al graf");
+    public boolean existeixArc(T nodeA, T nodeB) {
+        if (!adjacencyMap.containsKey(nodeA))
+            throw new  RuntimeException("El node A ha d'estar previament al graf");
+        if (!adjacencyMap.containsKey(nodeB))
+            throw new  RuntimeException("El node B ha d'estar previament al graf");
 
-        return adjacencyMap.get(nodeOrigen).containsKey(nodeDesti);
+        return adjacencyMap.get(nodeA).containsKey(nodeB);
     }
 
     /**
