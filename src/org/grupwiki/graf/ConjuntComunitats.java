@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 
 public class ConjuntComunitats<T> {
-    private ArrayList<Comunitat<T>> cjtComunitats;
+    protected ArrayList<Comunitat<T>> cjtComunitats;
 
     /**
      * Constructor per defecte, inicialitza les estructures internes de la classe
