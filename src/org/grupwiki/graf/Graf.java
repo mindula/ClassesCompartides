@@ -163,7 +163,7 @@ public class Graf<T> {
      * Retorna un Set amb tots els nodes del graf
      * @return un Set amb tots els nodes del graf
      */
-    public Set<T> getNodes() {
+    public HashSet<T> getNodes() {
         return adjacencyMap.keySet();
     }
 
@@ -172,7 +172,7 @@ public class Graf<T> {
      * @param node
      * @return una Set amb els arcs que surten d'un node <tt>node</tt>
      */
-    public Set<Arc<T>> getNodesAdjacents(T node) {
+    public HashSet<Arc<T>> getNodesAdjacents(T node) {
         return new HashSet<Arc<T>>(adjacencyMap.get(node).values());
     }
 
