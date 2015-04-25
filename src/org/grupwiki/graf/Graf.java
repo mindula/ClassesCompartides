@@ -1,11 +1,17 @@
 package org.grupwiki.graf;
 
+/**
+ * Grup 3: Wikipedia
+ * Usuari: ricard.gascons
+ * Data: 10/3/15
+ */
+
 /*************************************************************************
  *  Compilació:   javac Graf.java
  *  Execució:     java Graf
  *  Dependències: Map.java Arc.java
  *
- *  Un graf no dirigit amb pesos a les arestes, implementat utilitzant llistes
+ *  Un graf no dirigit amb pesos a les arestes, implementat utilitzant un mapa
  *  d'adjacències
  *
  *************************************************************************/
@@ -40,6 +46,7 @@ import java.util.*;
 public class Graf<T> {
 
     protected Map<T, Map<T, Arc<T>>> adjacencyMap;
+    protected ArrayList<Arc<T>> cjtArcs;
     private int V, E;
 
     /**
@@ -47,6 +54,7 @@ public class Graf<T> {
      */
     public Graf() {
         adjacencyMap = new HashMap<T, Map<T, Arc<T>>>();
+        cjtArcs = new ArrayList<Arc<T>>();
         V = E = 0;
     }
 
@@ -56,12 +64,12 @@ public class Graf<T> {
      */
     public Graf(Graf<T> other) {
         adjacencyMap = new HashMap<T, Map<T, Arc<T>>>();
+        cjtArcs = new ArrayList<Arc<T>>();
         for (T n : other.adjacencyMap.keySet()) {
             Map<T, Arc<T>> otherAdjacents = other.adjacencyMap.get(n);
             Map<T, Arc<T>> adjacents = new HashMap<T, Arc<T>>();
             for (Map.Entry<T, Arc<T>> otherArc : otherAdjacents.entrySet()){
                 Arc<T> arc;
-
                 if(adjacencyMap.containsKey(otherArc.getValue().getNodeA()) || adjacencyMap.containsKey(otherArc.getValue().getNodeA()) ){
                     arc = getArcEntre(otherArc.getValue().getNodeA(), otherArc.getValue().getNodeB());
                 }
@@ -69,10 +77,15 @@ public class Graf<T> {
                     arc = new Arc<T>(otherArc.getValue());
                 }
                 adjacents.put(otherArc.getKey(), arc);
-
             }
             adjacencyMap.put(n, adjacents);
         }
+        for (Arc<T> a : other.cjtArcs) {
+            Arc<T> arc = new Arc<T>(a.getPes(),a.getNodeA(),a.getNodeB());
+            cjtArcs.add(arc);
+        }
+        E = other.mida();
+        V = other.ordre();
     }
 
     /**
@@ -121,6 +134,7 @@ public class Graf<T> {
         else{
             adjacencyMap.get(arc.getNodeA()).put(arc.getNodeB(), arc);
             adjacencyMap.get(arc.getNodeB()).put(arc.getNodeA(), arc);
+            cjtArcs.add(arc);
             ++E;
         }
 
@@ -139,7 +153,9 @@ public class Graf<T> {
         Set<T> s = adjacencyMap.keySet();
         for (T t : s) {
             if (adjacencyMap.get(t).containsKey(node)) {
+                Arc<T> aux = adjacencyMap.get(t).get(node);
                 adjacencyMap.get(t).remove(node);
+                cjtArcs.remove(aux);
                 --E;
             }
         }
@@ -155,7 +171,7 @@ public class Graf<T> {
 
         if(! aAdjacents.remove(arc) || !bAdjacents.remove(arc))
             throw new RuntimeException("L'arc no existeix");
-
+        cjtArcs.remove(arc);
         --E;
     }
 
@@ -163,8 +179,16 @@ public class Graf<T> {
      * Retorna un Set amb tots els nodes del graf
      * @return un Set amb tots els nodes del graf
      */
-    public HashSet<T> getNodes() {
+    public Set<T> getNodes() {
         return adjacencyMap.keySet();
+    }
+
+    /**
+     * Retorna una llista no modificable del conjunt d'arcs de tot el graf
+     * @return una llista no modificable del conjunt d'arcs de tot el graf
+     */
+    public List<Arc<T>> getArcs() {
+        return Collections.unmodifiableList(cjtArcs);
     }
 
     /**
