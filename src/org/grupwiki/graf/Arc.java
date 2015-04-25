@@ -92,6 +92,8 @@ public class Arc<T> {
         return nodeB;
     }
 
+
+
     /**
      * Retorna una representació de l'arc en String del tipus {nodeA, pes}
      * @return una representació de l'arc en String del tipus {nodeA, pes}
