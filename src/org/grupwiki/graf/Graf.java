@@ -163,6 +163,11 @@ public class Graf<T> {
         --V;
     }
 
+    /**
+     * Elimina un arc <tt>arc</tt> del graf
+     * @param arc
+     * @throws RuntimeException quan l'arc no existeix dins el graf
+     */
 
     public void eliminarArc(Arc<T> arc) {
 
@@ -176,7 +181,8 @@ public class Graf<T> {
     }
 
     /**
-     * Retorna un Set amb tots els nodes del graf
+     * Retorna un Set amb tots els nodes del graf.
+     * Els canvis realitzats al Graf tindran efecte sobre el Set, i també al contrari.
      * @return un Set amb tots els nodes del graf
      */
     public Set<T> getNodes() {
@@ -193,6 +199,7 @@ public class Graf<T> {
 
     /**
      * Retorna una Set amb els arcs que surten d'un node <tt>node</tt>
+     * Els canvis realitzats al Graf tindran efecte sobre el set, i també al contrari
      * @param node
      * @return una Set amb els arcs que surten d'un node <tt>node</tt>
      */
