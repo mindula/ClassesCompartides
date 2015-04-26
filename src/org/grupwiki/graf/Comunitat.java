@@ -35,4 +35,16 @@ public class Comunitat<T> {
     public int mida(){
         return nodes.size();
     }
+
+    @Override
+    public String toString() {
+        String s = "(";
+        for( int i = 0 ; i<nodes.size(); i++){
+            s+= nodes.get(i).toString();
+            if(i != nodes.size()-1)
+                s+=", ";
+        }
+        s+=")";
+        return s;
+    }
 }

@@ -16,6 +16,8 @@ package org.grupwiki.graf;
  *
  *************************************************************************/
 
+
+
 /**
  *  La classe <tt>Graf</tt> representa un graf NO dirigit amb pesos als arcs,
  *  amb vèrtex parametritzats; cada arc és del tipus {@link Arc}
@@ -124,19 +126,16 @@ public class Graf<T> {
      */
     public void afegirArc(Arc<T> arc) {
         if (!adjacencyMap.containsKey(arc.getNodeA()))
-            throw new  RuntimeException("El node A ha d'estar previament al graf");
+            throw new  GrafUncaughtExeption("El node A ha d'estar previament al graf");
         if (!adjacencyMap.containsKey(arc.getNodeB()))
-            throw new  RuntimeException("El node B ha d'estar previament al graf");
+            throw new  GrafUncaughtExeption("El node B ha d'estar previament al graf");
 
-        if(adjacencyMap.get(arc.getNodeA()).containsKey(arc.getNodeB())){
-                throw new  RuntimeException("L'arc ja existeix");
-        }
-        else{
-            adjacencyMap.get(arc.getNodeA()).put(arc.getNodeB(), arc);
-            adjacencyMap.get(arc.getNodeB()).put(arc.getNodeA(), arc);
-            cjtArcs.add(arc);
-            ++E;
-        }
+
+        adjacencyMap.get(arc.getNodeA()).put(arc.getNodeB(), arc);
+        adjacencyMap.get(arc.getNodeB()).put(arc.getNodeA(), arc);
+        cjtArcs.add(arc);
+        ++E;
+
 
     }
 
@@ -175,7 +174,7 @@ public class Graf<T> {
         Collection<Arc<T>> bAdjacents = adjacencyMap.get(arc.getNodeB()).values();
 
         if(! aAdjacents.remove(arc) || !bAdjacents.remove(arc))
-            throw new RuntimeException("L'arc no existeix");
+            throw new GrafUncaughtExeption("L'arc no existeix");
         cjtArcs.remove(arc);
         --E;
     }
@@ -194,6 +193,7 @@ public class Graf<T> {
      * @return una llista no modificable del conjunt d'arcs de tot el graf
      */
     public List<Arc<T>> getArcs() {
+        //aixo tambe fa news...
         return Collections.unmodifiableList(cjtArcs);
     }
 
@@ -204,6 +204,9 @@ public class Graf<T> {
      * @return una Set amb els arcs que surten d'un node <tt>node</tt>
      */
     public HashSet<Arc<T>> getNodesAdjacents(T node) {
+
+                // jo no entenc que fa aqui el new. pero mol mala idea
+
         return new HashSet<Arc<T>>(adjacencyMap.get(node).values());
     }
 
@@ -240,17 +243,24 @@ public class Graf<T> {
      * <tt>nodeB</tt>
      * @param nodeA
      * @param nodeB
-     * @return un valor indicant si existeix un arc del node <tt>nodeA</tt> a
+     * @return cert si existeix un arc del node <tt>nodeA</tt> a
      * <tt>nodeB</tt>
      */
     public boolean existeixArc(T nodeA, T nodeB) {
-        if (!adjacencyMap.containsKey(nodeA))
-            throw new  RuntimeException("El node A ha d'estar previament al graf");
-        if (!adjacencyMap.containsKey(nodeB))
-            throw new  RuntimeException("El node B ha d'estar previament al graf");
+        if (!adjacencyMap.containsKey(nodeA) || !adjacencyMap.containsKey(nodeB))
+            return false;
 
         return adjacencyMap.get(nodeA).containsKey(nodeB);
     }
+
+
+    public static<T> T getNodeOposat(T nodeOrigen, Arc<T> arc){
+        if(arc.getNodeA() == nodeOrigen)
+            return arc.getNodeB();
+        else
+            return arc.getNodeA();
+    }
+
 
     /**
      * Retorna una representació en String del graf
@@ -258,7 +268,17 @@ public class Graf<T> {
      */
     @Override
     public String toString() {
-        return adjacencyMap.toString();
+        String s = "";
+        for (T node : adjacencyMap.keySet()){
+            s += node + ": { ";
+            HashSet<Arc<T>> adjacents = getNodesAdjacents(node);
+            for(Arc<T> adjacentAT : adjacents){
+                T adjacent = getNodeOposat(node, adjacentAT);
+                s+=adjacent+"("+adjacentAT.getPes()+") ";
+            }
+            s+="}\n";
+        }
+        return s;
     }
 
 }

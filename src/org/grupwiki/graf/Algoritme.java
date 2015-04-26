@@ -7,5 +7,5 @@ package org.grupwiki.graf;
  */
 
 public abstract class Algoritme<T>  {
-    public abstract ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int k, int l) throws Exception;
+    public abstract ConjuntComunitats<T> cercarComunitats(Graf<T> graf, int k, int l) throws GrafExeption;
 }
