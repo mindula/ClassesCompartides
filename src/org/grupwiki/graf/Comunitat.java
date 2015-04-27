@@ -36,6 +36,19 @@ public class Comunitat<T> {
         return nodes.size();
     }
 
+
+    public ArrayList<T> getComunitat() {
+        return nodes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         String s = "(";
