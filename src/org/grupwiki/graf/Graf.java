@@ -126,9 +126,9 @@ public class Graf<T> {
      */
     public void afegirArc(Arc<T> arc) {
         if (!adjacencyMap.containsKey(arc.getNodeA()))
-            throw new  GrafUncaughtExeption("El node A ha d'estar previament al graf");
+            throw new  RuntimeException("El node A ha d'estar previament al graf");
         if (!adjacencyMap.containsKey(arc.getNodeB()))
-            throw new  GrafUncaughtExeption("El node B ha d'estar previament al graf");
+            throw new  RuntimeException("El node B ha d'estar previament al graf");
 
 
         adjacencyMap.get(arc.getNodeA()).put(arc.getNodeB(), arc);
@@ -138,7 +138,6 @@ public class Graf<T> {
 
 
     }
-
 
     /**
      * Elimina un node <tt>node</tt> del graf.
@@ -174,7 +173,7 @@ public class Graf<T> {
         Collection<Arc<T>> bAdjacents = adjacencyMap.get(arc.getNodeB()).values();
 
         if(! aAdjacents.remove(arc) || !bAdjacents.remove(arc))
-            throw new GrafUncaughtExeption("L'arc no existeix");
+            throw new RuntimeException("L'arc no existeix");
         cjtArcs.remove(arc);
         --E;
     }
@@ -193,7 +192,6 @@ public class Graf<T> {
      * @return una llista no modificable del conjunt d'arcs de tot el graf
      */
     public List<Arc<T>> getArcs() {
-        //aixo tambe fa news...
         return Collections.unmodifiableList(cjtArcs);
     }
 
@@ -204,9 +202,6 @@ public class Graf<T> {
      * @return una Set amb els arcs que surten d'un node <tt>node</tt>
      */
     public HashSet<Arc<T>> getNodesAdjacents(T node) {
-
-                // jo no entenc que fa aqui el new. pero mol mala idea
-
         return new HashSet<Arc<T>>(adjacencyMap.get(node).values());
     }
 
