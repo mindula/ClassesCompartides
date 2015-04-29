@@ -10,16 +10,22 @@ import java.util.Set;
  */
 
 public class Comunitat<T> {
-    private int id;
     protected Set<T> nodes;
 
     /**
      * Constructor per defecte, a partir d'un identificador <tt>id</tt> inicialitza les estructures internes
-     * @param id
      */
-    public Comunitat(int id) {
+    public Comunitat() {
         nodes = new HashSet<T>();
-        this.id = id;
+    }
+
+    /**
+     * Constructor on un node es la seva propia comunitat
+     * @param node
+     */
+    public Comunitat(T node) {
+        this.nodes = new HashSet<T>();
+        this.nodes.add(node);
     }
 
     /**
@@ -41,14 +47,6 @@ public class Comunitat<T> {
 
     public Set<T> getComunitat() {
         return nodes;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override
