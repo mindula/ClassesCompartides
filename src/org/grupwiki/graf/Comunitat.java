@@ -1,6 +1,8 @@
 package org.grupwiki.graf;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Aquesta classe representa una Comunitat, la qual és un conjunt de nodes.
@@ -9,14 +11,14 @@ import java.util.ArrayList;
 
 public class Comunitat<T> {
     private int id;
-    protected ArrayList<T> nodes;
+    protected Set<T> nodes;
 
     /**
      * Constructor per defecte, a partir d'un identificador <tt>id</tt> inicialitza les estructures internes
      * @param id
      */
     public Comunitat(int id) {
-        nodes = new ArrayList<T>();
+        nodes = new HashSet<T>();
         this.id = id;
     }
 
@@ -37,7 +39,7 @@ public class Comunitat<T> {
     }
 
 
-    public ArrayList<T> getComunitat() {
+    public Set<T> getComunitat() {
         return nodes;
     }
 
@@ -52,10 +54,12 @@ public class Comunitat<T> {
     @Override
     public String toString() {
         String s = "(";
-        for( int i = 0 ; i<nodes.size(); i++){
-            s+= nodes.get(i).toString();
+        int i = 0;
+        for(T t : nodes){
+            s+= t.toString();
             if(i != nodes.size()-1)
                 s+=", ";
+            ++i;
         }
         s+=")";
         return s;
