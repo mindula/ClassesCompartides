@@ -45,7 +45,7 @@ public class Comunitat<T> {
     }
 
 
-    public Set<T> getComunitat() {
+    public Set<T> getNodes() {
         return nodes;
     }
 
