@@ -10,7 +10,7 @@ import java.util.Set;
  */
 
 public class Comunitat<T> {
-    protected Set<T> nodes;
+    protected HashSet<T> nodes;
 
     /**
      * Constructor per defecte, a partir d'un identificador <tt>id</tt> inicialitza les estructures internes
@@ -49,9 +49,11 @@ public class Comunitat<T> {
     }
 
 
-    public Set<T> getNodes() {
+    public HashSet<T> getNodes() {
         return nodes;
     }
+
+    public boolean estaBuida() {return nodes.isEmpty();}
 
     @Override
     public String toString() {
