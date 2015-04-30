@@ -47,8 +47,9 @@ import java.util.*;
 
 public class Graf<T> {
 
-    protected Map<T, Map<T, Arc<T>>> adjacencyMap;
+    protected HashMap<T, Map<T, Arc<T>>> adjacencyMap;
     protected ArrayList<Arc<T>> cjtArcs;
+    protected HashSet<T> cjtNodes;
     private int V, E;
 
     /**
@@ -57,6 +58,7 @@ public class Graf<T> {
     public Graf() {
         adjacencyMap = new HashMap<T, Map<T, Arc<T>>>();
         cjtArcs = new ArrayList<Arc<T>>();
+        cjtNodes = new HashSet<T>();
         V = E = 0;
     }
 
@@ -116,6 +118,7 @@ public class Graf<T> {
             throw new RuntimeException("No es pot inserir el mateix node multiples vegades al mateix graf");
 
         adjacencyMap.put(node, new HashMap<T, Arc<T>>());
+        cjtNodes.add(node);
         ++V;
     }
 
@@ -158,6 +161,7 @@ public class Graf<T> {
             }
         }
         adjacencyMap.remove(node);
+        cjtNodes.remove(node);
         --V;
     }
 
@@ -183,8 +187,8 @@ public class Graf<T> {
      * Els canvis realitzats al Graf tindran efecte sobre el Set, i també al contrari.
      * @return un Set amb tots els nodes del graf
      */
-    public Set<T> getNodes() {
-        return adjacencyMap.keySet();
+    public HashSet<T> getNodes() {
+        return cjtNodes;
     }
 
     /**
