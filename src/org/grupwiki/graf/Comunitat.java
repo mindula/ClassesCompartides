@@ -36,6 +36,10 @@ public class Comunitat<T> {
         nodes.add(node);
     }
 
+    public void eliminarNode(T node) {
+        nodes.remove(node);
+    }
+
     /**
      * Retorna la mida de la comunitat, és a dir, el nombre de nodes que la componen
      * @return la mida de la comunitat
