@@ -35,11 +35,16 @@ public class ConjuntComunitats<T> {
 
     /**
      * Retorna una comunitat localitzada a la posició i
-     * @param i
+     * @param id
      * @return una comunitat localitzada a la posició i
      */
-    public Comunitat<T> getComunitat(int i) {
-        return cjtComunitats.get(i);
+    public Comunitat<T> getComunitat(int id) throws Exception{
+        for (Comunitat<T> c : cjtComunitats) {
+            if (c.getId() == id) {
+                return c;
+            }
+        }
+        throw new Exception("No hi ha una comunitat amb aquesta id");
     }
 
     public void eliminarComunitat(Comunitat<T> c) {
