@@ -10,7 +10,7 @@ import java.util.Set;
  */
 
 public class Comunitat<T> {
-    private Integer id;
+    private int id;
     protected HashSet<T> nodes;
 
     /**
