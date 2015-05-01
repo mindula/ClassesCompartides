@@ -46,6 +46,10 @@ public class ConjuntComunitats<T> {
         cjtComunitats.remove(c);
     }
 
+    public ArrayList<Comunitat<T>> getComunitats() {
+        return cjtComunitats;
+    }
+
     @Override
     public String toString() {
         String s = "{";
