@@ -60,6 +60,8 @@ public class Comunitat<T> {
 
     public boolean estaBuida() {return nodes.isEmpty();}
 
+    public boolean teNode(T node) {return nodes.contains(node);}
+
     @Override
     public String toString() {
         String s = "(";
