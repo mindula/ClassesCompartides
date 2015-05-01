@@ -42,6 +42,10 @@ public class ConjuntComunitats<T> {
         return cjtComunitats.get(i);
     }
 
+    public void eliminarComunitat(Comunitat<T> c) {
+        cjtComunitats.remove(c);
+    }
+
     @Override
     public String toString() {
         String s = "{";
