@@ -24,7 +24,7 @@ public class Comunitat<T> {
      * Constructor on un node es la seva propia comunitat
      * @param node
      */
-    public Comunitat(int id, T node) {
+    public Comunitat(Integer id, T node) {
         this.nodes = new HashSet<T>();
         this.nodes.add(node);
     }
