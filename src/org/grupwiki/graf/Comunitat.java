@@ -36,6 +36,11 @@ public class Comunitat<T> {
         nodes.add(node);
     }
 
+    public void afegirCjtNodes(Comunitat<T> c) {
+        HashSet<T> s = c.getNodes();
+        nodes.addAll(s);
+    }
+
     public void eliminarNode(T node) {
         nodes.remove(node);
     }
