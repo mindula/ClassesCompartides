@@ -76,7 +76,7 @@ public class Comunitat<T> {
         String s = "(";
         int i = 0;
         for(T t : nodes){
-            s+= t.toString();
+            s+= t.toString() + " " + id;
             if(i != nodes.size()-1)
                 s+=", ";
             ++i;
