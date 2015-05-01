@@ -10,6 +10,7 @@ import java.util.Set;
  */
 
 public class Comunitat<T> {
+    private int id;
     protected HashSet<T> nodes;
 
     /**
@@ -23,7 +24,8 @@ public class Comunitat<T> {
      * Constructor on un node es la seva propia comunitat
      * @param node
      */
-    public Comunitat(T node) {
+    public Comunitat(int id, T node) {
+        this.id = id;
         this.nodes = new HashSet<T>();
         this.nodes.add(node);
     }
@@ -61,6 +63,14 @@ public class Comunitat<T> {
     public boolean estaBuida() {return nodes.isEmpty();}
 
     public boolean teNode(T node) {return nodes.contains(node);}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {
