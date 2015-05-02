@@ -123,22 +123,22 @@ public class Graf<T> {
     }
 
     /**
-     * Afegeix un arc <tt>a</tt>
+     * Afegeix un arc <tt>a</tt>. Si l'arc ja existeix, no passa res
      * @param arc
      * @throws RuntimeException quan algun dels dos nodes no existeix al graf
      */
     public void afegirArc(Arc<T> arc) {
-        if (!adjacencyMap.containsKey(arc.getNodeA()))
-            throw new  RuntimeException("El node A ha d'estar previament al graf");
-        if (!adjacencyMap.containsKey(arc.getNodeB()))
-            throw new  RuntimeException("El node B ha d'estar previament al graf");
+        if (!cjtArcs.contains(arc)) {
+            if (!adjacencyMap.containsKey(arc.getNodeA()))
+                throw new RuntimeException("El node A ha d'estar previament al graf");
+            if (!adjacencyMap.containsKey(arc.getNodeB()))
+                throw new RuntimeException("El node B ha d'estar previament al graf");
 
-
-        adjacencyMap.get(arc.getNodeA()).put(arc.getNodeB(), arc);
-        adjacencyMap.get(arc.getNodeB()).put(arc.getNodeA(), arc);
-        cjtArcs.add(arc);
-        ++E;
-
+            adjacencyMap.get(arc.getNodeA()).put(arc.getNodeB(), arc);
+            adjacencyMap.get(arc.getNodeB()).put(arc.getNodeA(), arc);
+            cjtArcs.add(arc);
+            ++E;
+        }
 
     }
 
