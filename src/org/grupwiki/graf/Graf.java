@@ -50,7 +50,7 @@ public class Graf<T> {
     protected HashMap<T, Map<T, Arc<T>>> adjacencyMap;
     protected ArrayList<Arc<T>> cjtArcs;
     protected HashSet<T> cjtNodes;
-    private int V, E;
+    protected int V, E;
 
     /**
      * Inicialitza un Graf buit
