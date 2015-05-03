@@ -21,6 +21,7 @@ public class Comunitat<T> {
     }
 
     public Comunitat(int id) {
+        nodes = new HashSet<T>();
         this.id = id;
     }
 
