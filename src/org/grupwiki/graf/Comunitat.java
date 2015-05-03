@@ -105,7 +105,7 @@ public class Comunitat<T> {
     /**
      * Retorna cert si existeix un node <tt>node</tt> dins la comunitat
      * @param node
-     * @return
+     * @return cert si existeix un node <tt>node</tt> dins la comunitat
      */
     public boolean teNode(T node) {return nodes.contains(node);}
 
