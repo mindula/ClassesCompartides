@@ -20,6 +20,10 @@ public class Comunitat<T> {
         nodes = new HashSet<T>();
     }
 
+    public Comunitat(int id) {
+        this.id = id;
+    }
+
     /**
      * Constructor on un node es la seva propia comunitat
      * @param node
