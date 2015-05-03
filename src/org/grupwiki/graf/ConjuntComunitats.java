@@ -1,5 +1,11 @@
 package org.grupwiki.graf;
 
+/**
+ * Grup 3: Wikipedia
+ * Usuari: agusti.bau
+ * Data: 10/3/15
+ */
+
 import java.util.ArrayList;
 
 /**

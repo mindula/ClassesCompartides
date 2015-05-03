@@ -1,8 +1,12 @@
 package org.grupwiki.graf;
 
-import java.util.ArrayList;
+/**
+ * Grup 3: Wikipedia
+ * Usuari: agusti.bau
+ * Data: 10/3/15
+ */
+
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Aquesta classe representa una Comunitat, la qual és un conjunt de nodes.

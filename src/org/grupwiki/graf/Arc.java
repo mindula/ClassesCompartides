@@ -1,11 +1,10 @@
-package org.grupwiki.graf; /*************************************************************************
- *  Compilació:   javac Arc.java
- *  Execució:     java Arc
- *
- *  Un arc amb un valor que representa el pes entre dos nodes concrets
- *  i un paràmetre T que representa el node al qual va destinat l'arc
- *
- *************************************************************************/
+package org.grupwiki.graf;
+
+/**
+ * Grup 3: Wikipedia
+ * Usuari: ricard.gascons
+ * Data: 10/3/15
+ */
 
 /**
  *  La classe <tt>Arc</tt> representa un arc amb pes, amb nodeA i nodeB parametritzat.
@@ -45,7 +44,7 @@ public class Arc<T> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Arc arc = (Arc) o;
+        Arc<?> arc = (Arc<?>) o;
 
         if (!nodeA.equals(arc.nodeA)) return false;
         if (!nodeB.equals(arc.nodeB)) return false;
