@@ -47,11 +47,19 @@ public class Comunitat<T> {
         nodes.add(node);
     }
 
+    /**
+     * Afegeix una altra comunitat al paràmetre implícit
+     * @param c
+     */
     public void afegirCjtNodes(Comunitat<T> c) {
         HashSet<T> s = c.getNodes();
         nodes.addAll(s);
     }
 
+    /**
+     * Elimina un node <tt>node</tt> del paràmetre implícit
+     * @param node
+     */
     public void eliminarNode(T node) {
         nodes.remove(node);
     }
@@ -64,23 +72,47 @@ public class Comunitat<T> {
         return nodes.size();
     }
 
-
+    /**
+     * Retorna un HashSet dels nodes de la comunitat
+     * @return un HashSet dels nodes de la comunitat
+     */
     public HashSet<T> getNodes() {
         return nodes;
     }
 
+    /**
+     * Retorna la id de la comunitat
+     * @return la id de la comunitat
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * id de la comunitat passa a ser <tt>id</tt>
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Retorna cert si la comunitat està buida
+     * @return cert si la comunitat està buida
+     */
     public boolean estaBuida() {return nodes.isEmpty();}
 
+    /**
+     * Retorna cert si existeix un node <tt>node</tt> dins la comunitat
+     * @param node
+     * @return
+     */
     public boolean teNode(T node) {return nodes.contains(node);}
 
+    /**
+     * Converteix a String la comunitat
+     * @return una string que representa la comunitat
+     */
     @Override
     public String toString() {
         String s = "(";

@@ -40,9 +40,9 @@ public class ConjuntComunitats<T> {
     }
 
     /**
-     * Retorna una comunitat localitzada a la posició i
+     * Retorna la comunitat amb id <tt>id</tt>
      * @param id
-     * @return una comunitat localitzada a la posició i
+     * @return la comunitat amb id <tt>id</tt>
      */
     public Comunitat<T> getComunitat(int id) throws Exception{
         for (Comunitat<T> c : cjtComunitats) {
@@ -53,14 +53,26 @@ public class ConjuntComunitats<T> {
         throw new Exception("No hi ha una comunitat amb aquesta id");
     }
 
+    /**
+     * Elimina una comunitat <tt>c</tt>
+     * @param c
+     */
     public void eliminarComunitat(Comunitat<T> c) {
         cjtComunitats.remove(c);
     }
 
+    /**
+     * Retorna una ArrayList de Comunitats
+     * @return una ArrayList de Comunitats
+     */
     public ArrayList<Comunitat<T>> getComunitats() {
         return cjtComunitats;
     }
 
+    /**
+     * Retorna una stirng que representa un conjunt de comunitats
+     * @return una stirng que representa un conjunt de comunitats
+     */
     @Override
     public String toString() {
         String s = "{";

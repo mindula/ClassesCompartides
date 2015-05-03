@@ -218,16 +218,16 @@ public class Graf<T> {
     }
 
     /**
-     * Retorna un valor indicant si existeix un node <tt>node</tt> dins el graf
+     * Retorna cert si existeix un node <tt>node</tt> dins el graf
      * @param node
-     * @return un valor indicant si existeix un node <tt>node</tt> dins el graf
+     * @return cert si existeix un node <tt>node</tt> dins el graf
      */
     public boolean existeixNode(T node) {
         return adjacencyMap.containsKey(node);
     }
 
     /**
-     * Retorna un valor indicant si existeix un arc del node <tt>nodeA</tt> a
+     * Retorna cert si existeix un arc del node <tt>nodeA</tt> a
      * <tt>nodeB</tt>
      * @param nodeA
      * @param nodeB
@@ -241,6 +241,13 @@ public class Graf<T> {
         return adjacencyMap.get(nodeA).containsKey(nodeB);
     }
 
+    /**
+     * Retorna el node oposat a l'indicat, donat un arc
+     * @param nodeOrigen
+     * @param arc
+     * @param <T>
+     * @return el node oposat a l'indicat, donat un arc
+     */
 
     public static<T> T getNodeOposat(T nodeOrigen, Arc<T> arc){
         if(arc.getNodeA() == nodeOrigen)
