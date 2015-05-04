@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ClassesCompartides.iml" filepath="$PROJECT_DIR$/ClassesCompartides.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../PropWikipedia/PropWikipedia.iml" filepath="$PROJECT_DIR$/../PropWikipedia/PropWikipedia.iml" />
     </modules>
   </component>
 </project>
-
